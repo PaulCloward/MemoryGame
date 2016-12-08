@@ -1,0 +1,108 @@
+body {
+	background-color: lightgreen;
+}
+div#memory_board{
+	background:#CCC;
+	border:#999 1px solid;
+	width:800px;
+	height:540px;
+	padding:24px;
+	margin:0px auto;
+}
+div#memory_board > div{
+	background: url(tile_bg.jpg) no-repeat;
+	border:#000 1px solid;
+	width:71px;
+	height:71px;
+	float:left;
+	margin:10px;
+	padding:20px;
+	font-size:64px;
+	cursor:pointer;
+	text-align:center;
+}
+
+#2 {
+	text-align: center;
+	font-size: 1em;
+}
+
+.game-header {
+	font-weight: bold;
+	font-size: 3.5em;
+	text-align:center;
+	
+}
+
+
+.missed_guess_div {
+	font-weight: bold;
+	font-size: 2em;
+	text-align: center;
+}
+
+.button {
+  	font: bold 11px Arial;
+  	text-decoration: none;
+  	background-color: #EEEEEE;
+  	color: #333333;
+  	border-top: 1px solid #CCCCCC;
+  	border-right: 1px solid #333333;
+  	border-bottom: 1px solid #333333;
+  	border-left: 1px solid #CCCCCC;
+	margin-left: 25%;
+	margin-right: 25%;
+	display: block;
+        width: 100px;
+	height: 50px;	
+	padding: 10px 10px 10px 10px;
+	text-align: center;
+}
+
+.user-found {
+	background-color: #f1492f;
+	font-weight: bold;
+	width: 120px;
+	border-radius: 25px;
+	text-align: center;
+	margin-left: 25%;
+	margin-right: 25%;
+}
+
+div.form-container{
+  	display: inline-block;
+  	border: 4px ridge black;
+  	position: fixed;
+  	width: 30%;
+  	height: 30%;
+  	top: 35%;
+  	left:30%;	
+  	margin:10px;
+  	background-color: lightgrey;
+}
+p.form-header{
+  	margin:0px;
+  	font: 24px bold;
+  	color:blue;  
+	background: lightgrey;
+  	text-align:center;
+}
+form{
+  	margin:10px;
+}
+label{ width:80px; display: inline-block;}
+input{
+  border: 3px ridge black;
+  border-radius:5px;
+  padding:3px;
+}
+input[type=submit]{
+  	font: 18px bold;
+  	width: 120px;
+  	color:white;  
+	background:grey;
+ 	margin-top:15px;
+  	margin-left:85px;
+}
+
+

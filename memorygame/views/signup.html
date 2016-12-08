@@ -1,0 +1,23 @@
+<!doctype html>
+<html>
+<head>
+  <title>Memory201 Signup</title>
+  <link rel="stylesheet" type="text/css" 
+      href="/static/css/styles.css" />
+</head>
+<body>
+  <div class="form-container">
+    <p class="form-header">Memory201 Sign Up</p>
+    <form method="POST" action="/signup">
+      <label>Username:</label>
+        <input type="text" name="username"><br/></br>
+      <label>Password:</label>
+        <input type="password" name="password"><br/></br>
+      <label>Email:</label>
+        <input type="email" name="email"><br/></br>
+      <input type="submit" value="Register">
+    </form>       
+  <p class="user-found"> <%= msg %></p>
+  </div>
+</body>
+</html>

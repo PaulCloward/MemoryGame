@@ -1,0 +1,95 @@
+<!doctype html>
+<html ng-app="myApp">
+<head>
+  <title>Memory Game</title>
+  <link rel="stylesheet" type="text/css" 
+      href="/static/css/styles.css" />
+  <script>
+var memory_array = ['A','A','B','B','C','C','D','D','E','E','F','F','G','G','H','H','I','I','J','J','K','K','L','L'];
+var memory_values = [];
+var memory_tile_ids = [];
+var tiles_flipped = 0;
+var guessCount = 0;
+Array.prototype.memory_tile_shuffle = function(){
+    var i = this.length, j, temp;
+    while(--i > 0){
+        j = Math.floor(Math.random() * (i+1));
+        temp = this[j];
+        this[j] = this[i];
+        this[i] = temp;
+    }
+}
+function newBoard(){
+	tiles_flipped = 0;
+	guessCount = 0;
+	document.getElementById("2").innerHTML = guessCount;
+	var output = '';
+    memory_array.memory_tile_shuffle();
+	for(var i = 0; i < memory_array.length; i++){
+		output += '<div id="tile_'+i+'" onclick="memoryFlipTile(this,\''+memory_array[i]+'\')"></div>';
+	}
+	document.getElementById('memory_board').innerHTML = output;
+}
+function memoryFlipTile(tile,val){
+	if(tile.innerHTML == "" && memory_values.length < 2){
+		tile.style.background = '#FFF';
+		tile.innerHTML = val;
+		if(memory_values.length == 0){
+			memory_values.push(val);
+			memory_tile_ids.push(tile.id);
+		} else if(memory_values.length == 1){
+			memory_values.push(val);
+			memory_tile_ids.push(tile.id);
+			if(memory_values[0] == memory_values[1]){
+				tiles_flipped += 2;
+				// Clear both arrays
+				memory_values = [];
+            	memory_tile_ids = [];
+				// Check to see if the whole board is cleared
+				if(tiles_flipped == memory_array.length){
+					alert("Board cleared... generating new board");
+					document.getElementById('memory_board').innerHTML = "";
+					newBoard();
+				}
+			} else {
+				function flip2Back(){
+				    // Flip the 2 tiles back over
+				   	guessCount += 1;
+				   	document.getElementById("2").innerHTML = guessCount;
+				    var tile_1 = document.getElementById(memory_tile_ids[0]);
+				    var tile_2 = document.getElementById(memory_tile_ids[1]);
+				 
+				    tile_1.style.background = 'url(tile_bg.jpg) no-repeat';
+            	    tile_1.innerHTML = "";
+				    tile_2.style.background = 'url(tile_bg.jpg) no-repeat';
+            	    tile_2.innerHTML = "";
+				    // Clear both arrays
+				    memory_values = [];
+            	    memory_tile_ids = [];
+				}
+				setTimeout(flip2Back, 700);
+			}
+		}
+	}
+}
+  </script>
+</head>
+<body>
+  <div ng-controller="myController">
+    <p class="game-header">Memory201</p>
+    <p class="game-header">Good Luck Playing <%= username %></p>
+
+   <div id="memory_board"></div>
+ <div class="missed-guess-div" style="font-weight:bold; font-size: 2em; text-align:center;"> Missed Guesses:  <div id="2"></div></div>
+   <script>newBoard();</script> 
+
+  </div>
+  <p class="user-found"><%= msg %></p><br/>
+  <a class="button"  href="/logout">logout</a>
+  <br/>
+  <a class="button"  href="/user">Edit Memory Game User</a>
+ <!-- <hr>Color <%= color %>-->
+  <script src="http://code.angularjs.org/1.2.9/angular.min.js"></script>
+  <script src="/static/js/my_app.js"></script>
+</body>
+</html>
